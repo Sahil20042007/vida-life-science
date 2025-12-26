@@ -1,0 +1,106 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Building, Map, Users, ArrowRight, Phone } from 'lucide-react';
+
+const ScaleSection = () => {
+  
+  const stats = [
+    {
+      id: 1,
+      label: "Partner Hospitals",
+      value: "300+",
+      desc: "Serving Government, Trust, and Private institutions.",
+      icon: <Building className="text-sky-500" size={24} />
+    },
+    {
+      id: 2,
+      label: "Geographic Reach",
+      value: "15+",
+      desc: "Operational presence across major Indian states.",
+      icon: <Map className="text-sky-500" size={24} />
+    },
+    {
+      id: 3,
+      label: "Daily Impact",
+      value: "50k",
+      desc: "Surgical instruments processed sterile every single day.",
+      icon: <Users className="text-sky-500" size={24} />
+    },
+  ];
+
+  return (
+    <section className="w-full bg-white pt-24 pb-0">
+      <div className="container mx-auto px-6">
+        
+        {/* --- PART 1: THE NUMBERS --- */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32 border-b border-slate-100 pb-16">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="text-center md:text-left group"
+            >
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
+                <div className="p-2 bg-sky-50 rounded-lg">
+                  {stat.icon}
+                </div>
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">
+                  {stat.label}
+                </span>
+              </div>
+              
+              <div className="text-6xl lg:text-7xl font-light text-slate-900 mb-4 tracking-tight">
+                {stat.value}
+              </div>
+              
+              <p className="text-slate-500 leading-relaxed max-w-xs mx-auto md:mx-0">
+                {stat.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* --- PART 2: THE CTA (Blue Bridge) --- */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full bg-slate-900 rounded-t-3xl overflow-hidden px-6 py-20 lg:py-24 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12"
+        >
+          {/* Background Decoration */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-600/20 rounded-full blur-[120px] pointer-events-none translate-x-1/2 -translate-y-1/2" />
+          
+          <div className="relative z-10 max-w-2xl">
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready to upgrade your <br/>
+              <span className="text-sky-500">Infection Control Standards?</span>
+            </h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
+              Consult with our biomedical engineers to audit your current CSSD setup. 
+              We provide end-to-end support, from layout design to regulatory certification.
+            </p>
+          </div>
+
+          <div className="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0">
+             <button className="px-8 py-4 bg-sky-600 text-white font-bold rounded hover:bg-sky-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-sky-900/50">
+               <Phone size={20} />
+               Schedule an Audit
+             </button>
+             <button className="px-8 py-4 bg-transparent border border-slate-600 text-white font-bold rounded hover:bg-white hover:text-slate-900 transition-all duration-300 flex items-center justify-center gap-2">
+               Download Brochure
+               <ArrowRight size={20} />
+             </button>
+          </div>
+
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
+export default ScaleSection;
